@@ -1,6 +1,6 @@
 import streamlit as st                  
 from src.utils import load_css, get_image_path   
-from src.database import generic_sql_fetch                        
+from src.database import fetch_sql_query                        
 import pandas as pd                     
 from datetime import date               
 import numpy as np                     
@@ -13,5 +13,5 @@ load_css()
 st.title("📊 Events Dashboard")
 st.write("Here is an overview of all available events.")
 
-df = generic_sql_fetch()
+df = fetch_sql_query()
 st.table(df)
