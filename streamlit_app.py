@@ -14,6 +14,7 @@ home = st.Page("views/home.py", title="Home", icon="🏠",url_path="home")
 dashboard = st.Page("views/dashboard.py", title="Dashboard", icon="📊",url_path="dashboard")
 
 settings = st.Page("views/settings.py", title="Settings", icon="⚙️",url_path="settings")
+help = st.Page("views/help.py", title="Help", icon="🆘",url_path="help")
 
 statistics = st.Page("views/statistics_101.py", title="Statistics 101", icon="🧮",url_path="statistics_101")
 encryption = st.Page("views/rsa_example.py", title="RSA Encryption", icon="🔑",url_path="encryption")
@@ -27,7 +28,7 @@ else:
     # Register Pages Here
     pg = st.navigation({
         "Main Hub": [home, dashboard],
-        "Management": [settings],
+        "Management": [settings, help],
         "Experiments": [encryption, statistics]
     })
 
