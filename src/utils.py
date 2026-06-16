@@ -1,3 +1,5 @@
+from datetime import datetime
+import inspect
 import streamlit as st              
 from pathlib import Path            # pathlib instead of OS (cleaner, modern, easier to reason about)
 
@@ -26,6 +28,15 @@ def load_markdown(file_name: str) -> str:
     if markdown_path.exists():
         return markdown_path.read_text(encoding="utf-8")
     return f"⚠️ Markdown file `{file_name}` not found."
+
+
+def load_sql(file_name: str) -> str:
+    """Reads a SQL file from the sql/ directory."""
+
+    sql_path = Path.cwd() / "static" / "sql" / file_name
+    if sql_path.exists():
+        return sql_path.read_text(encoding="utf-8")
+    raise FileNotFoundError(f"SQL file not found: {sql_path}")
 
 
 def get_image_path(file_name: str) -> Path | None:
@@ -66,3 +77,12 @@ def load_js(file_name: str) -> None:
         st.markdown(html_block, unsafe_allow_html=True)
     else:
         st.warning(f"🖲️ JavaScript file not found: {js_path}")
+
+
+def log_streamlit_rerun() -> None:
+    """Print a simple timestamped message whenever a Streamlit page reruns."""
+
+    timestamp = datetime.now().strftime("%H:%M")
+    caller_file = inspect.stack()[1].filename
+    page_name = Path(caller_file).stem
+    print(f"🚨 Streamlit rerun at {timestamp} from {page_name}")
