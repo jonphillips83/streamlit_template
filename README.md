@@ -30,7 +30,6 @@ my_streamlit_app/
 
 ```Powershell
 winget install --id=astral-sh.uv  -e
-"Run these from inside vscode terminal once you have the project"
 uv sync
 uv run streamlit run
 ```
