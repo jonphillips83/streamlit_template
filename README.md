@@ -1,4 +1,4 @@
-## Streamlit app structure
+# Streamlit App Template
 
 ## SQL Queries 
 
@@ -24,6 +24,8 @@ st.image(get_image_path("hilarious_cat.gif"))
 
 ```
 
+
+## File Structure
 ```
 my_streamlit_app/
 │
