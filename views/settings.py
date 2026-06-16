@@ -7,8 +7,3 @@ print(f'🚨 Streamlit has restarted: Reading Python script from the beginning\n
 load_css()
 
 st.title("⚙️ Settings")
-
-line = "string"
-st.toast(f'''Multi  
-             line  
-             {line}''')
