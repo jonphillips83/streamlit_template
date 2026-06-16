@@ -40,7 +40,7 @@ load_css()
 Javascript can be stored in static/js and loaded with load_js("script_name.js") at the bottom of the streamlit page.
 
 ```Python
-from src.utils import load_css
+from src.utils import load_js
 
 # ...CODE
 # ... MORE CODE
