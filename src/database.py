@@ -7,13 +7,32 @@ from src.utils import load_sql
 
 def get_db_connection() -> pyodbc.Connection:
     # Seamlessly pull nested keys from st.secrets
+    sql_server = st.secrets["sql_server"]
     driver = "{ODBC Driver 18 for SQL Server}"
-    server = st.secrets["sql_server"]["server"]
-    db = st.secrets["sql_server"]["database"]
-    uid = st.secrets["sql_server"]["uid"]
-    pwd = st.secrets["sql_server"]["password"]
-    
-    conn_str = f"DRIVER={driver};SERVER={server};DATABASE={db};UID={uid};PWD={pwd};Encrypt=no;"
+    server = sql_server["server"]
+    db = sql_server["database"]
+    uid = sql_server.get("uid")
+    pwd = sql_server.get("password")
+    auth = sql_server.get("auth", "sql" if uid and pwd else "windows").lower()
+
+    conn_parts = [
+        f"DRIVER={driver}",
+        f"SERVER={server}",
+        f"DATABASE={db}",
+        "Encrypt=no",
+    ]
+
+    if auth in {"windows", "trusted", "integrated"}:
+        conn_parts.append("Trusted_Connection=yes")
+    else:
+        if not uid or not pwd:
+            raise ValueError(
+                "SQL authentication requires sql_server.uid and sql_server.password "
+                "in Streamlit secrets."
+            )
+        conn_parts.extend([f"UID={uid}", f"PWD={pwd}"])
+
+    conn_str = ";".join(conn_parts) + ";"
     return pyodbc.connect(conn_str)
 
 @st.cache_data(ttl=600) # Caches results in memory for 10 minutes (600 seconds)

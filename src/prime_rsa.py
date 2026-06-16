@@ -64,8 +64,7 @@ class RsaEngine:
         candidates = []
         # Loop through odd numbers starting at 3 (even numbers share a factor of 2)
         for i in range(3, self.totient, 2):
-            # 1. Must be coprime to totient
-            # use math.gcd() to find numbers with greatest common divisor of 1 (coprime)
+            # i must be coprime to totient
             if math.gcd(i, self.totient) == 1 and self.is_prime(i):
                 candidates.append(i)
 
@@ -99,34 +98,3 @@ class RsaEngine:
                f"e: {self.public_exponent}, d: {self.private_exponent}")
     
 
-
-# rsa = RsaEncrypt()
-
-
-# totient = 99
-
-# def is_prime(n):
-#     if n < 2:
-#         return False
-#     for i in range(2, int(math.isqrt(n)) + 1):
-#         if n % i == 0:
-#             return False
-#     return True
-
-# def get_rsa_e_candidates(totient):
-#     candidates = []
-#     # Loop through odd numbers starting at 3 increment by 2
-#     for i in range(3, totient, 2):
-#         # 1. Must be coprime to totient
-#         # 2. Must be a prime number
-#         # use math.gcd() to find numbers with greatest common divisor of 1 (coprime)
-#         if math.gcd(i, totient) == 1 and is_prime(i):
-#             candidates.append(i)
-            
-#     return candidates
-
-# Example with a small mock totient
-
-# all_valid_primes = get_rsa_e_candidates(totient)
-
-# print("All mathematically valid primes:", all_valid_primes)

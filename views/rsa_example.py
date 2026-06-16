@@ -1,17 +1,13 @@
 import streamlit as st
-from src.utils import load_css, get_image_path
+from src.utils import load_css, get_image_path, log_streamlit_rerun
 from src.prime_rsa import RsaEngine
 
 # Terminal helper to know when streamlit restarts it's loop
-print(f'🚨 Streamlit has restarted: Reading Python script from the beginning\n')
-
-# Inject css
+log_streamlit_rerun()
 load_css()
 
 # Make RsaEngine available to Streamlit
 rsa = RsaEngine()
-
-
 
 st.header("Explore RSA Encryption")
 st.image(get_image_path("thinking.gif"))

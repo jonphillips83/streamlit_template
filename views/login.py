@@ -1,9 +1,8 @@
 import streamlit as st
-from src.utils import get_image_path, load_css
+from src.utils import get_image_path, load_css, log_streamlit_rerun
 
 # Terminal helper to know when streamlit restarts it's loop
-print(f'🚨 Streamlit has restarted: Reading Python script from the beginning\n')
-
+log_streamlit_rerun()
 # Inject css
 load_css()
 
@@ -23,8 +22,7 @@ with card_right:
             <div class="login-kicker">Secure Access</div>
             <div class="login-title">Welcome back</div>
             <div class="login-text">
-                Sign in to continue to the dashboard. This is still the lightweight
-                placeholder login, but the layout now behaves more like a proper entry screen.
+                Sign in to continue
             </div>
         </div>
         """,
@@ -39,10 +37,10 @@ with card_right:
         st.write("")
         st.write("")
         if st.button("Login", use_container_width=True):
-            if username == "admin" and password =='1234':
+            if username == st.secrets["temp_login"]["temp_user"] and password == st.secrets["temp_login"]["temp_password"]:
                 st.session_state.logged_in = True
                 st.success('✔️ Jackpot')
-                st.rerun()
+                st.rerun() # Needed to reboot page and recognise st.session_state is updated
             else:               
                 st.error('❌ Error')
 

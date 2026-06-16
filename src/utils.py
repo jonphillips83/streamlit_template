@@ -2,6 +2,7 @@ from datetime import datetime
 import inspect
 import streamlit as st              
 from pathlib import Path            # pathlib instead of OS (cleaner, modern, easier to reason about)
+import re
 
 
 def load_css(file_name: str = "styles.css") -> None:
@@ -43,7 +44,6 @@ def get_image_path(file_name: str) -> Path | None:
 
     """
     Returns the absolute path string for an image in static/img/.
-    Optimized for Streamlit's native st.image() processor.
     """
     img_path = Path.cwd() / "static" / "img" / file_name
     
@@ -86,3 +86,18 @@ def log_streamlit_rerun() -> None:
     caller_file = inspect.stack()[1].filename
     page_name = Path(caller_file).stem
     print(f"🚨 Streamlit rerun at {timestamp} from {page_name}")
+
+
+def check_valid_email(email: str) -> bool:
+
+    # Regex pattern matcher
+
+    pattern = r"^[\w\.-]+@[\w\.-]+\.\w+$"
+
+    if re.match(pattern, email):
+        
+        return True
+    
+    else:
+
+        return False

@@ -1,6 +1,6 @@
 # Streamlit App Template
 
-## SQL Queries 
+## SQL Queries
 
 SQL can be added to static/sql and called with fetch_sql_query("name_of_sql_file.sql")
 which will return a PANDAS Dataframe
@@ -10,6 +10,28 @@ which will return a PANDAS Dataframe
 from src.database import fetch_sql_query
 
 fetch_sql_query("name_of_sql_file.sql")
+```
+
+`get_db_connection()` supports both SQL Server authentication and Windows integrated authentication.
+
+For SQL Server authentication, use:
+
+```toml
+[sql_server]
+server = "localhost,1433"
+database = "my_database"
+uid = "sa"
+password = "your_password"
+auth = "sql"
+```
+
+For Windows integrated authentication, omit `uid` and `password`, or set `auth = "windows"`:
+
+```toml
+[sql_server]
+server = "WINDOWS-SERVER\\INSTANCE"
+database = "my_database"
+auth = "windows"
 ```
 
 ## Load Images

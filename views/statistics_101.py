@@ -1,9 +1,8 @@
 import streamlit as st                  
-from src.utils import load_css, get_image_path, load_markdown
+from src.utils import load_css, load_markdown, log_streamlit_rerun
 
 # Terminal helper to know when streamlit restarts it's loop
-print(f'🚨 Streamlit has restarted: Reading Python script from the beginning\n')
-
+log_streamlit_rerun()
 load_css()
 
-st.markdown(load_markdown("Statistics.md"))
+st.markdown(load_markdown("statistics.md"))
