@@ -17,8 +17,9 @@ def get_db_connection():
     return pyodbc.connect(conn_str)
 
 @st.cache_data(ttl=600) # Caches results in memory for 10 minutes (600 seconds)
-def fetch_events():
-    """Fetches and caches all events for the dashboard."""
+def generic_sql_fetch():
+    """Fetches and caches data from database."""
+    
     query = load_sql("select.sql")
     
     with get_db_connection() as conn:
@@ -28,8 +29,8 @@ def fetch_events():
     return df
 
 @st.cache_data(ttl=600) # Caches results in memory for 10 minutes (600 seconds)
-def fetch_venue():
-    """Fetches and caches all venues for the dashboard."""
+def generic_inline_sql_fetch():
+    """Fetches and caches data from database with an inline query."""
 
     query = """
         SELECT * FROM venue
