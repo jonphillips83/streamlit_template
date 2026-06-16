@@ -155,8 +155,8 @@ st.subheader("RSA Values So Far")
 col1, col2, col3, col4 = st.columns(4)
 col1.metric("p", prime_factor_one)
 col2.metric("q", prime_factor_two)
-col3.metric("n", modulus)
-col4.metric("phi(n)", rsa.totient)
+col3.metric("Modulus", modulus)
+col4.metric("Totient", rsa.totient)
 
 st.markdown(
     f"""
