@@ -25,7 +25,7 @@ password = "your_password"
 auth = "sql"
 ```
 
-For Windows integrated authentication, omit `uid` and `password`, or set `auth = "windows"`:
+For Windows integrated authentication set `auth = "windows"`:
 
 ```toml
 [sql_server]
