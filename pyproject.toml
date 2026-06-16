@@ -1,0 +1,12 @@
+[project]
+name = "python-basics"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "bcrypt>=5.0.0",
+    "numpy>=2.4.6",
+    "pyodbc>=5.3.0",
+    "streamlit>=1.58.0",
+]
