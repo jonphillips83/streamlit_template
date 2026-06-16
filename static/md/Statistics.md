@@ -15,7 +15,9 @@ mean_val = np.mean(data)
 ### Median
 
 When in an ordered list:
+
 $$\text{Position of Median} = \frac{n + 1}{2}$$
+
 ```Python
 import numpy as np
 
@@ -33,7 +35,9 @@ There can be more than one mode or no mode.
 ### Range
 
 Difference between largest and smallest value
+
 $$Range = max(x) - min(x)$$
+
 ```Python
 import numpy as np
 
@@ -46,10 +50,15 @@ data_range = np.ptp(data)
 Measures the spread of the inner 50% of vales.
 
 When in an ordered list:
+
 $$Q_2 = median$$
+
 $$Q_1 = \frac{n + 1}{4}$$
+
 $$Q_3 = \frac{3(n + 1)}{4}$$
-$$ICR = Q3 - Q1$$  
+
+$$ICR = Q3 - Q1$$
+
 ```Python
 import numpy as np
 
@@ -61,9 +70,10 @@ iqr = q3 - q1
 
 ### Standard Deviation
 
-The typical distance of data values from the mean
+The typical distance of data values from the mean.
 
 $$s = \sqrt{\frac{\sum (x_i - \bar{x})^2}{n - 1}}$$
+
 The sum of all values minus the mean, they are squared to make all the values positive. When the data is a sample the denominator is the number of values minus one, known as **Bessel's correction**. The whole calculation is square rooted to correct the metric after the earlier squaring. 
 
 ```Python
@@ -88,12 +98,16 @@ The measure of how likely an event is to occur. Measured from 0 (impossible) to 
 ### Theoretical Probability
 
 $$P(A) = \frac{n(A)}{n(S)} =\frac {\text{\# Favourable Outcomes}}{\text{\# Possible Outcomes}}$$
+
 ### Experimental Probability
 
 $$P(A) = \frac{n(A)}{n(S)} =\frac {\text{\# of Occurances}}{\text{\# of Trials}}$$
+
 The experimental probability will converge on the theoretical probability as the number of trials increases.
+
 ### Probability Mass Function
 Discrete
+
 ### Probability Density Function
 Continuous
 
