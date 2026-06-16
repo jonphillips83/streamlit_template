@@ -1,5 +1,16 @@
 ## Streamlit app structure
 
+## SQL Queries 
+
+SQL can be added to static/sql and called with fetch_sql_query("name_of_sql_file.sql")
+which will return a PANDAS Dataframe
+
+```Python
+"""The function will need to be imported from src.utils"""
+from src.database import fetch_sql_query
+
+fetch_sql_query("name_of_sql_file.sql")
+```
 
 ```
 my_streamlit_app/
