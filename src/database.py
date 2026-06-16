@@ -5,7 +5,7 @@ from src.utils import load_sql
 
 # Securely fetch connection details from Streamlit secrets
 
-def get_db_connection():
+def get_db_connection() -> pyodbc.Connection:
     # Seamlessly pull nested keys from st.secrets
     driver = "{ODBC Driver 18 for SQL Server}"
     server = st.secrets["sql_server"]["server"]
@@ -17,17 +17,15 @@ def get_db_connection():
     return pyodbc.connect(conn_str)
 
 @st.cache_data(ttl=600) # Caches results in memory for 10 minutes (600 seconds)
-def generic_sql_fetch():
-    """Fetches and caches data from database."""
-    
-    query = load_sql("select.sql")
+def fetch_sql_query(file_name: str) -> pd.DataFrame:
+    """Fetches and caches query results from a SQL file."""
+    query = load_sql(file_name)
     
     with get_db_connection() as conn:
         # Reading directly into a Pandas DataFrame keeps things incredibly clean
         df = pd.read_sql(query, conn)
     
     return df
-
 @st.cache_data(ttl=600) # Caches results in memory for 10 minutes (600 seconds)
 def generic_inline_sql_fetch():
     """Fetches and caches data from database with an inline query."""
