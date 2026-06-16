@@ -24,6 +24,42 @@ st.image(get_image_path("hilarious_cat.gif"))
 
 ```
 
+## Load CSS
+
+Css can be stored in static/css and loaded with load_css() at the top of the streamlit page.
+
+```Python
+from src.utils import load_css
+
+# Inject css
+load_css()
+```
+
+## Load JS
+
+Javascript can be stored in static/js and loaded with load_js("script_name.js") at the bottom of the streamlit page.
+
+```Python
+from src.utils import load_css
+
+# ...CODE
+# ... MORE CODE
+# ... ALL THE CODE
+
+# Inject js
+load_js()
+```
+
+## Load Markdown
+
+Markdown can be stored in static/md and loaded with load_markdown("name_of_markdown_file.md").
+
+```Python
+import streamlit as st                  
+from src.utils import load_markdown
+
+st.markdown(load_markdown("lorem.md"))
+```
 
 ## File Structure
 ```
@@ -57,6 +93,8 @@ my_streamlit_app/
 ├── pyproject.toml           # Dependency requirements
 └── streamlit_app.py         # Clean entry point 
 ```
+
+## Installation
 
 ```Powershell
 winget install --id=astral-sh.uv  -e
