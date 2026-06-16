@@ -11,7 +11,7 @@ st.markdown('<div class="login-shell"><div class="login-card">', unsafe_allow_ht
 card_left, card_right = st.columns([1.05, 1], gap="large")
 
 with card_left:
-    image_path = get_image_path("whistle.gif")
+    image_path = get_image_path("thinkingcat.gif")
     if image_path:
         st.image(image_path)
 
