@@ -36,7 +36,7 @@ def load_sql(file_name: str) -> str:
     sql_path = Path.cwd() / "static" / "sql" / file_name
     if sql_path.exists():
         return sql_path.read_text(encoding="utf-8")
-    raise FileNotFoundError(f"SQL file not found: {sql_path}")
+    raise FileNotFoundError(f"⚠️ SQL file not found: {sql_path}")
 
 
 def get_image_path(file_name: str) -> Path | None:
