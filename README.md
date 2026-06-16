@@ -12,6 +12,18 @@ from src.database import fetch_sql_query
 fetch_sql_query("name_of_sql_file.sql")
 ```
 
+## Load Images
+
+Images can be stored in static/img and loaded with get_image_path("name_of_image.jpg)
+
+```Python
+import streamlit as st
+from src.utils import get_image_path
+
+st.image(get_image_path("hilarious_cat.gif"))
+
+```
+
 ```
 my_streamlit_app/
 │
@@ -21,8 +33,13 @@ my_streamlit_app/
 │
 ├── static/
 │   ├── css/
-│   │   └── style.css        # ALL your custom CSS goes here
-│   └── images/
+│   │   └── style.css        # Custom CSS goes here
+│   ├── md/                  # Markdown can be read from here
+│   │   └── lorem.md
+│   ├── js/                  # JS can be read from here
+│   ├── sql/                 # SQL Queries can be read from here
+│   │   └── select.sql       
+│   └── images/              # Images can be read from here
 │
 ├── src/                     # Core python logic
 │   ├── __init__.py
