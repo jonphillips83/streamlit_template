@@ -97,7 +97,11 @@ my_streamlit_app/
 ## Installation
 
 ```Powershell
+
+"""Install uv via winget"""
 winget install --id=astral-sh.uv  -e
+
+"""Sync project dependencies and run"""
 uv sync
 uv run streamlit run
 ```
