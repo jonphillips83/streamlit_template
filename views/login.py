@@ -1,4 +1,6 @@
 import streamlit as st
+
+from src.auth import authenticate_user
 from src.utils import get_image_path, load_css, log_streamlit_rerun
 
 # Terminal helper to know when streamlit restarts it's loop
@@ -37,12 +39,13 @@ with card_right:
         st.write("")
         st.write("")
         if st.button("Login", use_container_width=True):
-            if username == st.secrets["temp_login"]["temp_user"] and password == st.secrets["temp_login"]["temp_password"]:
+            if authenticate_user(username, password):
                 st.session_state.logged_in = True
-                st.success('✔️ Jackpot')
-                st.rerun() # Needed to reboot page and recognise st.session_state is updated
-            else:               
-                st.error('❌ Error')
+                st.success("✔️ Jackpot")
+                st.rerun()  # Needed to reboot page and recognise st.session_state is updated
+            else:
+                st.error("❌ Error")
 
 
+st.markdown("</div></div>", unsafe_allow_html=True)
 st.markdown("</div></div>", unsafe_allow_html=True)
