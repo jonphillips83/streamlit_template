@@ -1,5 +1,34 @@
 # Streamlit App Template
 
+## Authentication
+
+Login verification lives in `src/auth.py`.
+
+- The username is currently fixed as `admin`
+- The password is checked with `bcrypt`
+- The stored hash is read from `.streamlit/secrets.toml`
+
+Add this to your secrets file:
+
+```toml
+[auth]
+admin_password_hash = "$2b$12$..."
+```
+
+To generate a new bcrypt hash, run:
+
+```powershell
+uv run scripts/generate_password_hash.py
+```
+
+You can also pass a password directly:
+
+```powershell
+uv run scripts/generate_password_hash.py --password "your-password"
+```
+
+The script prints a hash you can paste into `.streamlit/secrets.toml`.
+
 ## SQL Queries
 
 SQL can be added to static/sql and called with fetch_sql_query("name_of_sql_file.sql")
@@ -91,6 +120,9 @@ my_streamlit_app/
 │   ├── secrets.toml
 │   └── config.toml          # Global theme settings (primary color, fonts)
 │
+├── scripts/
+│   └── generate_password_hash.py
+│
 ├── static/
 │   ├── css/
 │   │   └── style.css        # Custom CSS goes here
@@ -103,7 +135,8 @@ my_streamlit_app/
 │
 ├── src/                     # Core python logic
 │   ├── __init__.py
-│   ├── database.py          # Database queries / bcrypt logic
+│   ├── auth.py              # Login verification against a bcrypt hash
+│   ├── database.py          # Database connection helpers
 │   └── utils.py             # Helper functions
 │
 ├── views/                   # Multipage UI layouts (if applicable)
